@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trivia Maratón</title>
+  <!-- R1: Montserrat local, preload por peso usado; cero CDN de fuentes -->
+  <link rel="preload" href="fonts/montserrat-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-900-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- escenario: haces de luz y estrellas (solo decorativo) -->
+  <div id="stage" aria-hidden="true">
+    <div class="beam beam--1"></div>
+    <div class="beam beam--2"></div>
+    <div class="beam beam--3"></div>
+    <div class="beam beam--4"></div>
+    <div id="stars"></div>
+  </div>
+
+  <main id="app">
+    <section class="screen" id="screen-home"></section>
+    <section class="screen" id="screen-rules"></section>
+    <section class="screen" id="screen-setup"></section>
+    <section class="screen" id="screen-game"></section>
+    <section class="screen" id="screen-results"></section>
+    <div class="overlay" id="overlay-turn"></div>
+    <div class="overlay" id="overlay-pause"></div>
+  </main>
+
+  <div id="flash" class="flash" aria-hidden="true"></div>
+  <div id="fx" aria-hidden="true"></div>
+
+  <!-- plataforma Totalplay (unico lugar con sagem.*) -->
+  <script src="js/platform/totalplay/device.js"></script>
+  <script src="js/platform/totalplay/viewport.js"></script>
+  <script src="js/platform/totalplay/keys.js"></script>
+  <script src="js/platform/totalplay/focus.js"></script>
+  <script src="js/platform/totalplay/lifecycle.js"></script>
+  <!-- app -->
+  <script src="js/app/questions.js"></script>
+  <script src="js/app/game.js"></script>
+  <script src="js/app/sound.js"></script>
+  <script src="js/ui/fx.js"></script>
+  <script src="js/ui/ui.js"></script>
+  <script src="js/app/main.js"></script>
+</body>
+</html>
