@@ -98,8 +98,6 @@ h1, h2, h3, p { margin: 0; }
 .btn--cta::after { content: ""; position: absolute; left: -.4rem; right: -.4rem; top: -.4rem; bottom: -.4rem; border-radius: 62rem;
   box-shadow: 0 0 2rem .3rem #ffd000; opacity: .35;
   -webkit-animation: halo 1.1s ease-in-out infinite alternate; animation: halo 1.1s ease-in-out infinite alternate; }
-.btn--chip { min-width: 13rem; border-color: var(--cyan); box-shadow: 0 0 1.25rem -.1rem var(--cyan); }
-.btn--chip.is-selected { background: linear-gradient(180deg, #fff56a, #ffb300); color: var(--ink); border-color: #fff; }
 
 /* foco: visible a ~3 m. anillo blanco grueso + escala + brillo estatico */
 .is-focused, .card.is-focused, .btn.is-focused { position: relative; z-index: 3;
@@ -129,14 +127,6 @@ h1, h2, h3, p { margin: 0; }
 .home__hint { margin-top: .5rem; }
 
 /* ---------- SETUP ---------- */
-.setup__box { margin: auto 0; }
-.setup__title { font-size: 4.25rem; line-height: 5rem; }
-.setup__sub { margin-top: .5rem; max-width: 70rem; }
-.setup__label { margin: 3rem 0 1rem; color: #fff; text-shadow: none; }
-.chips { display: -webkit-flex; display: flex; padding: .5rem 0 .5rem .5rem; }
-.chips .btn + .btn { margin-left: 1.75rem; }
-.setup__go { margin-top: 2.5rem; padding-left: .5rem; }
-
 /* ---------- REGLAS (una por pantalla) ---------- */
 #screen-rules { -webkit-justify-content: center; justify-content: center; }
 .rules__cat { text-transform: uppercase; margin-bottom: 1.5rem; }

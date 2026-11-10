@@ -3,8 +3,8 @@
   'use strict';
   var App = global.App, TP = global.TP, ui = App.ui, game = App.game, snd = App.sound, doc = global.document;
 
-  var route = 'home';          /* home | rules | setup | game | results */
-  var settings = { catId: null, bank: 40, rule: 0 };
+  var route = 'home';          /* home | rules | game | results */
+  var settings = { catId: null, rule: 0 };
 
   function findCat(id) {
     var i;
@@ -27,22 +27,15 @@
     ui.renderRule(findCat(settings.catId), i);
   }
 
-  function goSetup() {
-    route = 'setup';
-    ui.renderSetup(findCat(settings.catId), settings.bank);
-  }
-
   function startGame() {
     route = 'game';
-    game.start(findCat(settings.catId), settings.bank);
+    game.start(findCat(settings.catId), game.CFG.BANK_S);
   }
 
   /* ---- acciones de foco (OK) ---- */
   TP.focus.register('pick-category', function (n) { settings.catId = n.getAttribute('data-id'); goRules(0); });
-  TP.focus.register('next-rule', function () { if (settings.rule < ui.rulesCount() - 1) { goRules(settings.rule + 1); } else { goSetup(); } });
-  TP.focus.register('set-bank', function (n) { settings.bank = parseInt(n.getAttribute('data-sec'), 10); ui.markBank(settings.bank); });
-  TP.focus.register('start', function () { startGame(); });
-  TP.focus.register('answer', function (n) { game.answer(parseInt(n.getAttribute('data-i'), 10)); });
+  TP.focus.register('next-rule', function () { if (settings.rule < ui.rulesCount() - 1) { goRules(settings.rule + 1); } else { startGame(); } });
+    TP.focus.register('answer', function (n) { game.answer(parseInt(n.getAttribute('data-i'), 10)); });
   TP.focus.register('start-turn', function () { game.skipHandoff(); });
   TP.focus.register('resume', function () { game.resume(); });
   TP.focus.register('quit', function () { goHome(); });
@@ -83,9 +76,6 @@
       e.preventDefault();
     } else if (route === 'rules') {
       if (settings.rule > 0) { goRules(settings.rule - 1); } else { goHome(); }
-      e.preventDefault();
-    } else if (route === 'setup') {
-      goRules(ui.rulesCount() - 1);
       e.preventDefault();
     } else if (route === 'results') {
       goHome();

@@ -15,7 +15,7 @@ Teclado en escritorio: flechas = D-pad, Enter = OK, Backspace = BACK, 1-4 = resp
 En STB: D-pad + OK + BACK (461) y teclas numéricas 1-4.
 
 ## Reglas del juego
-- Cada equipo tiene un banco de tiempo (20 / 40 / 60 s; por defecto 40 s). El reloj solo corre en su turno.
+- Cada equipo tiene un banco de tiempo (fijo en 30 s; se cambia en `CFG.BANK_S` de `js/app/game.js`). El reloj solo corre en su turno.
 - Los equipos se alternan pregunta por pregunta.
 - Acierto: +100 pts (+50 por cada acierto seguido extra, tope +150) y +3 s.
 - Fallo: -5 s y se pierde la racha.
@@ -52,7 +52,10 @@ No se repite ninguna hasta agotar todas; al reiniciar el ciclo se conserva como 
 
 ## Cambios (ronda 3)
 - **Bug 4ª tarjeta:** con mouse, al pasar el cursor el carrusel se desplazaba bajo el puntero y el clic caía en otra tarjeta. Ahora el foco por mouse no mueve el carrusel (`focus.js` manda `source: 'mouse'` y `ui.js` lo ignora). Con control remoto no cambia nada.
-- **Reglas obligatorias:** al elegir trivia se pasa por 4 pantallas de regla (`ui.renderRule`, textos generados desde `App.game.CFG`), solo con "Siguiente / Entendido"; BACK retrocede una regla. Después viene el tiempo por equipo y "Comenzar". "Jugar de nuevo" no vuelve a mostrarlas.
+- **Reglas obligatorias:** al elegir trivia se pasa por 4 pantallas de regla (`ui.renderRule`, textos generados desde `App.game.CFG`), solo con "Siguiente / Entendido"; BACK retrocede una regla. Al pulsar "Entendido" en la última regla empieza la partida. "Jugar de nuevo" no vuelve a mostrarlas.
 - **Sonido (`js/app/sound.js`):** música de concurso en loop, campanita al acertar, corneta al fallar o quedarse sin tiempo, fanfarria al final. Todo sintetizado con Web Audio (sin archivos). Arranca con la primera tecla o clic. **Soporte de Web Audio en la DIW362: TBD**; si no existe, el juego sigue en silencio. La música se acelera cuando el equipo activo tiene 7 s o menos y baja de volumen en pausa.
 - **Legibilidad:** sombras de texto más bajas, tipografía de apoyo más grande, texto sin opacidad en equipos inactivos, y fallo en rojo oscuro. Auditoría de contraste sobre 144 textos en todas las pantallas: mínimo 4.5:1 a 1920×1080 y 1280×720.
 - **Foquitos** de arriba y abajo eliminados.
+
+## Cambios (ronda 4)
+- **Tiempo fijo de 30 s por equipo:** se eliminó la pantalla y las opciones de selección de tiempo. La partida arranca directo al terminar las reglas.

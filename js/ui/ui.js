@@ -124,7 +124,7 @@
       { icon: 'turns', color: '#ff2d95', title: 'Turnos alternados',
         text: 'Cada equipo responde una pregunta y le pasa el control al otro.' },
       { icon: 'clock', color: '#00e5ff', title: 'El reloj manda',
-        text: 'Cada equipo tiene su propio banco de tiempo, y solo corre en su turno. Si el tiempo de un equipo se acaba, queda fuera.' },
+        text: 'Cada equipo tiene su propio banco de ' + C.BANK_S + ' segundos, y solo corre en su turno. Si el tiempo de un equipo se acaba, queda fuera.' },
       { icon: 'star', color: '#ffe600', title: 'Acierta y suma',
         text: 'Cada acierto da +' + C.BASE + ' puntos y +' + (C.BONUS_MS / 1000) + ' segundos. Los aciertos seguidos suman hasta +' + bonusCap + ' puntos de bono.' },
       { icon: 'trophy', color: '#7cff3f', title: 'Falla y pierdes tiempo',
@@ -166,39 +166,6 @@
     TP.focus.setScope(root, btn);
     FX.popSoft(card);
     FX.burstAt(icon, 6, [r.color, '#ffffff', '#ffe600'], true);
-  };
-
-  /* ---------- SETUP (tiempo por equipo) ---------- */
-  ui.renderSetup = function (cat, bankSec) {
-    var root = byId('screen-setup'), chips, chip, secs = [20, 40, 60], i, go, ctaEl, box;
-    clear(root);
-    ui.showScreen('screen-setup');
-
-    box = el('div', 'setup__box');
-    box.appendChild(el('h1', 't-display title-retro setup__title', cat.name));
-    box.appendChild(el('p', 't-body is-variant setup__sub', 'Ya conocen las reglas. Solo falta elegir cuánto tiempo tendrá cada equipo.'));
-    box.appendChild(el('h2', 't-h2 setup__label', 'Tiempo por equipo'));
-    chips = el('div', 'chips');
-    for (i = 0; i < secs.length; i++) {
-      chip = focusable(el('div', 'btn btn--chip' + (secs[i] === bankSec ? ' is-selected' : ''), secs[i] + ' s'), 'set-bank');
-      chip.setAttribute('data-sec', String(secs[i]));
-      chips.appendChild(chip);
-    }
-    box.appendChild(chips);
-    go = el('div', 'setup__go');
-    ctaEl = focusable(el('div', 'btn btn--cta', 'Comenzar'), 'start');
-    go.appendChild(ctaEl);
-    box.appendChild(go);
-    root.appendChild(box);
-    TP.focus.setScope(root, ctaEl);
-  };
-
-  ui.markBank = function (sec) {
-    var list = byId('screen-setup').querySelectorAll('[data-action="set-bank"]'), i;
-    for (i = 0; i < list.length; i++) {
-      if (parseInt(list[i].getAttribute('data-sec'), 10) === sec) { list[i].classList.add('is-selected'); }
-      else { list[i].classList.remove('is-selected'); }
-    }
   };
 
   /* ---------- JUEGO ---------- */

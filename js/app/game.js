@@ -13,6 +13,7 @@
   var CFG = {
     BONUS_MS: 3000, PENALTY_MS: 5000,
     BASE: 100, STREAK_STEP: 50, STREAK_CAP: 3,
+    BANK_S: 30,                       /* banco de tiempo fijo por equipo (segundos) */
     FEEDBACK_MS: 1300, HANDOFF_S: 2, GUARD_MS: 350, TICK_MS: 100
   };
 
